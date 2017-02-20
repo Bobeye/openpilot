@@ -29,7 +29,7 @@ managed_processes = {
   "controlsd": "selfdrive.controls.controlsd",
   "radard": "selfdrive.controls.radard",
   "calibrationd": "selfdrive.calibrationd.calibrationd",
-  # "loggerd": "selfdrive.loggerd.loggerd",
+  "loggerd": "selfdrive.loggerd.loggerd",
   "logmessaged": "selfdrive.logmessaged",
   "logcatd": ("logcatd", ["./logcatd"]),
   "boardd": ("boardd", ["./boardd"]),   # switch to c++ boardd
@@ -187,7 +187,8 @@ def manager_thread():
     for p in car_started_processes:
       start_managed_process(p)
 
-  logger_dead = False
+  # logger_dead = False
+  logger_dead = True
 
   count = 0
 
@@ -227,8 +228,8 @@ def manager_thread():
     elif max_temp < 70.0:
       start_managed_process("uploader")
 
-    if avail < 0.05:
-      logger_dead = True
+    # if avail < 0.05:
+    #   logger_dead = True
 
     # start constellation of processes when the car starts
     if not os.getenv("STARTALL"):
